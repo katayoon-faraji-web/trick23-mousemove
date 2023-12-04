@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: rgb(228, 125, 249);
+            transform-style: preserve-3d;
+        }
+        figure{
+            width: 800px;
+            overflow: hidden;
+            margin: 100px auto;
+            perspective: 800px;
+            transform-style: preserve-3d;
+            transition: .2s;
+        }
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <figure id="fig">
+        <img src="img/1.jpg" alt="">
+    </figure>
+
+
+    <script>
+        let _fig = document.getElementById('fig')
+        _fig.addEventListener('mousemove',(e)=>{
+            let w = _fig.computedStyleMap().get('width').value
+            let h = _fig.clientHeight
+            console.log(w);
+            console.log(h);
+            let x = (e.offsetX)/10-((w/2)/10)
+            let y = (e.offsetY)/10-((h/2)/10)
+            _fig.style.transform = 'perspective(800px)rotateY('+x+'deg)rotateX('+y+'deg)'
+
+        })
+        _fig.addEventListener('mouseleave',(e)=>{
+         
+            _fig.style.transform = 'perspective(800px)rotateY(0deg)rotateX(0deg)'
+            // let _childs = e.target.children
+            // _childs[0].style.transform = 'rotateY(0deg)rotateX(0deg)'
+
+        })
+    </script>
+    
+</body>
+</html>
